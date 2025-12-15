@@ -47,7 +47,7 @@ a {
 
 
 
-form {
+.form {
     background: #ffffff;
     padding: 20px;
     margin-bottom: 30px;
@@ -82,6 +82,14 @@ button {
     cursor: pointer;
 }
 
+.delete {
+ background-color: red;
+}
+
 button:hover {
     background-color: #0056b3;
+}
+
+.delete:hover {
+ background-color: red;
 }
