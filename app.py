@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json
+from flask import Flask, render_template, request, url_for, redirect
 import json
 
 app = Flask(__name__)
@@ -12,6 +12,20 @@ with open("data/data.json", "r", encoding="utf-8") as file:
 def index():
     return render_template('index.html', posts=blog_posts)
 
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    if request.method == 'POST':
+        id = blog_posts[-1]['id'] + 1
+        title = request.form.get('title')
+        author = request.form.get('author')
+        content = request.form.get('content')
+
+        new_post = {"id": id, "title": title, "author": author, "content": content}
+        blog_posts.append(new_post)
+        with open("data/data.json", "w", encoding="utf-8") as file:
+            json.dump(blog_posts, file, indent=4, ensure_ascii=False)
+        return redirect(url_for('index'))
+    return render_template('add.html')
 
 
 if __name__ == '__main__':
