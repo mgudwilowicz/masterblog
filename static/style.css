@@ -44,7 +44,10 @@ a {
     margin: 10px 0;
 }
 
-
+.action {
+    display: flex;
+    justify-content: space-between;
+}
 
 
 .form {
